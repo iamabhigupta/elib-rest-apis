@@ -6,6 +6,7 @@ import createHttpError from "http-errors";
 
 import cloudinary from "../config/cloudinary";
 import bookModel from "./bookModel";
+import { AuthRequest } from "../middlewares/authenticate";
 
 const createBook = async (req: Request, res: Response, next: NextFunction) => {
   const { title, genre } = req.body;
@@ -48,10 +49,12 @@ const createBook = async (req: Request, res: Response, next: NextFunction) => {
     console.log({ uploadResult });
     console.log({ bookFileUploadResult });
 
+    const _req = req as AuthRequest;
+
     const newBook = await bookModel.create({
       title,
       genre,
-      author: "666bd24534bd84d517b1574b",
+      author: _req.userId,
       coverlmage: uploadResult.secure_url,
       file: bookFileUploadResult.secure_url,
     });
