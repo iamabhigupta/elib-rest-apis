@@ -9,6 +9,7 @@ import bookModel from "./bookModel";
 
 const createBook = async (req: Request, res: Response, next: NextFunction) => {
   const { title, genre } = req.body;
+  console.log("");
 
   const files = req.files as { [fieldname: string]: Express.Multer.File[] };
 
