@@ -11,7 +11,7 @@ const bookSchema = new mongoose.Schema<Book>(
       type: mongoose.Schema.ObjectId,
       require: true,
     },
-    coverlmage: {
+    coverImage: {
       type: String,
       require: true,
     },
