@@ -1,11 +1,15 @@
 import express from "express";
 import createHttpError from "http-errors";
+import cors from "cors";
 
 import { globalErrorHandler } from "./middlewares/grlobalErrorHandler";
 import userRouter from "./users/userRouter";
 import bookRouter from "./books/bookRouter";
+import { config } from "./config/config";
 
 const app = express();
+
+app.use(cors({ origin: config.frontendUrl }));
 app.use(express.json());
 
 // Routes
